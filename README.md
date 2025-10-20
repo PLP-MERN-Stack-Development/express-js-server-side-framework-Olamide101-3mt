@@ -1,62 +1,169 @@
-# Express.js RESTful API Assignment
+Product API - Express.js Assignment (Week 2)
 
-This assignment focuses on building a RESTful API using Express.js, implementing proper routing, middleware, and error handling.
+A RESTful API built with Express.js and MongoDB that manages product data.
+This project demonstrates backend fundamentals — CRUD operations, middleware, authentication, error handling, and advanced query features.
 
-## Assignment Overview
+🚀 Features
 
-You will:
-1. Set up an Express.js server
-2. Create RESTful API routes for a product resource
-3. Implement custom middleware for logging, authentication, and validation
-4. Add comprehensive error handling
-5. Develop advanced features like filtering, pagination, and search
+CRUD operations for managing products
 
-## Getting Started
+Custom middleware for logging, validation, and authentication
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Install dependencies:
-   ```
-   npm install
-   ```
-4. Run the server:
-   ```
-   npm start
-   ```
+Global error handling
 
-## Files Included
+Filtering, pagination, and search functionality
 
-- `Week2-Assignment.md`: Detailed assignment instructions
-- `server.js`: Starter Express.js server file
-- `.env.example`: Example environment variables file
+MongoDB integration using Mongoose
 
-## Requirements
+Environment variable configuration using dotenv
 
-- Node.js (v18 or higher)
-- npm or yarn
-- Postman, Insomnia, or curl for API testing
+🛠️ Technologies Used
 
-## API Endpoints
+Node.js
 
-The API will have the following endpoints:
+Express.js
 
-- `GET /api/products`: Get all products
-- `GET /api/products/:id`: Get a specific product
-- `POST /api/products`: Create a new product
-- `PUT /api/products/:id`: Update a product
-- `DELETE /api/products/:id`: Delete a product
+MongoDB / Mongoose
 
-## Submission
+dotenv
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+body-parser
 
-1. Complete all the required API endpoints
-2. Implement the middleware and error handling
-3. Document your API in the README.md
-4. Include examples of requests and responses
+uuid (for unique product IDs)
 
-## Resources
+Postman (for API testing)
 
-- [Express.js Documentation](https://expressjs.com/)
-- [RESTful API Design Best Practices](https://restfulapi.net/)
-- [HTTP Status Codes](https://developer.mozilla.org/en-US/docs/Web/HTTP/Status) 
+📂 Project Structure
+week2_main/
+│
+├── server.js                # Main server file
+├── config/
+│   └── db.js                # MongoDB connection setup
+│
+├── routes/
+│   └── products.js          # Product routes
+│
+│
+├── middleware/
+│   ├── logger.js            # Request logging
+│   ├── auth.js              # Authentication middleware
+│   ├── errorHandler.js      # Global error handling
+│   └── validateProduct.js   # Validation middleware
+│
+├── models/
+│   └── Product.js           # Product schema
+│
+├── .env                     # Environment variables
+└── README.md                # Project documentation
+
+⚙️ Setup Instructions
+1️⃣ Clone the Repository
+git clone https://github.com/YOUR_USERNAME/express-js-server-side-framework-Olamide101-3mt.git
+cd express-js-server-side-framework-Olamide101-3mt
+
+2️⃣ Install Dependencies
+npm install
+
+3️⃣ Create a .env File
+
+Create a .env file in your root directory and add:
+
+MONGO_URI=your_mongodb_connection_string
+PORT=3000
+
+
+(You can use a local MongoDB instance or a MongoDB Atlas URI.)
+
+4️⃣ Start the Server
+node server.js
+
+
+You should see:
+
+✅ MongoDB connected successfully
+Server running on http://localhost:3000
+
+🧠 API Documentation
+Base URL
+http://localhost:3000/api/products
+
+🔐 Authentication
+
+All protected routes require an API key header:
+
+authorization: Bearer secret123
+
+
+🧾 Endpoints
+Method	Endpoint	Description
+GET	/api/products	Get all products (supports filtering, pagination, and search)
+GET	/api/products/:id	Get a specific product by ID
+POST	/api/products	Create a new product
+PUT	/api/products/:id	Update an existing product
+DELETE	/api/products/:id	Delete a product
+GET	/api/products/stats	Get product statistics (e.g., count by category)
+🧪 Example Request (Create Product)
+
+POST http://localhost:3000/api/products
+
+Headers:
+
+x-api-key: mysecretkey
+Content-Type: application/json
+
+
+Body:
+
+{
+  "name": "Wireless Mouse",
+  "description": "Ergonomic mouse with USB receiver",
+  "price": 25.99,
+  "category": "electronics",
+  "inStock": true
+}
+
+
+Response:
+
+{
+  "message": "Product created successfully",
+  "product": {
+    "_id": "6714df832f...",
+    "name": "Wireless Mouse",
+    "description": "Ergonomic mouse with USB receiver",
+    "price": 25.99,
+    "category": "electronics",
+    "inStock": true
+  }
+}
+
+⚡ Error Handling
+
+Custom error handling middleware ensures clean and consistent API responses:
+
+400 — Validation errors
+
+401 — Unauthorized
+
+404 — Resource not found
+
+500 — Server errors
+
+Example:
+
+{
+  "status": 404,
+  "message": "Product not found"
+}
+
+🧩 Environment Example (.env.example)
+MONGO_URI=your_mongodb_connection_string
+PORT=3000
+API_KEY=mysecretkey
+
+📜 License
+
+This project is part of the PLP MERN Stack Scholarship Program (Week 2 Assignment).
+Developed by Olamide Wahab.
+
+Would you like me to make this README use the Bearer token version of your authentication instead of x-api-key? I can adjust it to perfectly match your current setup.
